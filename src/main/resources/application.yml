@@ -9,10 +9,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
   liquibase:
+    change-log: classpath:db/liquibase/master.xml
     enabled: true
     drop-first: false
-#    change-log: classpath:db.changelog/changelog.yaml
-    default-schema: public
-#  liquibase:
-#    change-log: classpath:../db/changelog/changelog.xml
 
