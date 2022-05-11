@@ -5,11 +5,49 @@
                    logicalFilePath="db/liquibase/data/initial.xml">
 
     <changeSet id="1" author="Liquibase">
-        <createTable tableName="test_table">
-            <column name="test_id" type="int">
+        <createTable tableName="users">
+            <column name="username" type="varchar(255)">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="test_column" type="varchar"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="enabled" type="boolean"/>
+        </createTable>
+        <createTable tableName="authorities">
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" foreignKeyName="fk_authorities_users" references="users(username)"/>
+            </column>
+            <column name="authority" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="" author="alice">
+        <createTable tableName="employee">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create address table" author="kirill">
+        <createTable tableName="city">
+            <column name="id" type="int" autoIncrement="true">
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="int">
+            </column>
+        </createTable>
+        <createTable tableName="country">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
