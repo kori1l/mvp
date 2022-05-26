@@ -44,28 +44,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .build();
 //        return new InMemoryUserDetailsManager(user,admin);
 //    }
-    @Bean
-    public JdbcUserDetailsManager users(DataSource dataSource){
-        UserDetails user = User.builder()
-                .username("user")
-                .password("{bcrypt}$2a$12$54IPdYIcsPz8sxBCvS2u3.lDD/ZLsTtid9Av3xhUVxfr7XzpCORci")
-                .roles("USER")
-                .build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("{bcrypt}$2a$12$54IPdYIcsPz8sxBCvS2u3.lDD/ZLsTtid9Av3xhUVxfr7XzpCORci")
-                .authorities("READ_ANYTHING")
-                .roles("USER","ADMIN")
-                .build();
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        if(jdbcUserDetailsManager.userExists(user.getUsername())){
-            jdbcUserDetailsManager.deleteUser(user.getUsername());
-        }
-        jdbcUserDetailsManager.createUser(user);
-        if(jdbcUserDetailsManager.userExists(admin.getUsername())){
-            jdbcUserDetailsManager.deleteUser(admin.getUsername());
-        }
-        jdbcUserDetailsManager.createUser(admin);
-        return jdbcUserDetailsManager;
-    }
+//    @Bean
+//    public JdbcUserDetailsManager users(DataSource dataSource){
+//        UserDetails user = User.builder()
+//                .username("user")
+//                .password("{bcrypt}$2a$12$54IPdYIcsPz8sxBCvS2u3.lDD/ZLsTtid9Av3xhUVxfr7XzpCORci")
+//                .roles("USER")
+//                .build();
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password("{bcrypt}$2a$12$54IPdYIcsPz8sxBCvS2u3.lDD/ZLsTtid9Av3xhUVxfr7XzpCORci")
+//                .authorities("READ_ANYTHING")
+//                .roles("USER","ADMIN")
+//                .build();
+//        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+//        if(jdbcUserDetailsManager.userExists(user.getUsername())){
+//            jdbcUserDetailsManager.deleteUser(user.getUsername());
+//        }
+//        jdbcUserDetailsManager.createUser(user);
+//        if(jdbcUserDetailsManager.userExists(admin.getUsername())){
+//            jdbcUserDetailsManager.deleteUser(admin.getUsername());
+//        }
+//        jdbcUserDetailsManager.createUser(admin);
+//        return jdbcUserDetailsManager;
+//    }
 }
